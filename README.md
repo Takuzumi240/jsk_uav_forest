@@ -42,7 +42,7 @@ roslaunch jsk_uav_forest_simulation forest_simulation.launch task_kind:=2 circle
 roslaunch jsk_uav_forest_simulation forest_simulation.launch task_kind:=3 target_num:=3
 ```
 
-start by clicking the ```start``` button in the rqt_gui
+start by ```rosservice call /enable_motors "enable: true"``` and clicking the ```start``` button in the rqt_gui
 
 
 ## forest challenge (using DJI M100 + DJI Guidance + Pointgrey Chameleon3 + Hokuyo UST20LX)
