@@ -22,8 +22,8 @@
   <arg name="start_z" value="0.5"/>
 
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find jsk_uav_forest_simulation)/gazebo_model/world/forest.world" unless="$(arg collision)" />
-    <arg name="world_name" value="$(find jsk_uav_forest_simulation)/gazebo_model/world/forest_collision.world" if="$(arg collision)" />
+    <arg name="world_name" value="$(find jsk_uav_forest_simulation)/gazebo_model/world/apple.world" unless="$(arg collision)" />
+    <arg name="world_name" value="$(find jsk_uav_forest_simulation)/gazebo_model/world/apple_collision.world" if="$(arg collision)" />
     <arg name="debug" value="$(arg debug)"/>
     <arg name="gui" value="$(arg gui)" />
     <arg name="headless" default="$(arg headless)"/>

@@ -3,9 +3,9 @@
   <name>jsk_uav_forest_simulation</name>
   <version>0.0.0</version>
   <description>The jsk_uav_forest_simulation package</description>
-  <maintainer email="shifan@jsk.imi.i.u-tokyo.ac.jp">Shi Fan</maintainer>
+  <maintainer email="nishio@jsk.imi.i.u-tokyo.ac.jp">Takuzumi Nishio</maintainer>
   <license>LGPLv3</license>
-  <author email="shifan@jsk.imi.i.u-tokyo.ac.jp">Shi Fan</author> -->
+  <author email="nishio@jsk.imi.i.u-tokyo.ac.jp">Takuzumi Nishio</author> -->
 
   <buildtool_depend>catkin</buildtool_depend>
 
