@@ -14,5 +14,10 @@
       No image filter (for real forest environment).
     </description>
   </class>
+  <class name="vision_detection/SeparatedHsvFilter" type="vision_detection::SeparatedHsvFilter" base_class_type="vision_detection::DetectorBase">
+    <description>
+      Sepaterd image filter (for fruit harvest).
+    </description>
+  </class>
 
 </library>

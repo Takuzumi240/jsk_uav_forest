@@ -60,7 +60,7 @@ namespace vision_detection
 
 
     /* ros service */
-    srv_ = boost::make_shared <dynamic_reconfigure::Server<Config> > (nh_);
+    srv_ = boost::make_shared <dynamic_reconfigure::Server<Config> > (ros::NodeHandle(nh_, "vision_detection"));
     dynamic_reconfigure::Server<Config>::CallbackType f =
       boost::bind (&IndependentHsvFilter::configCallback, this, _1, _2);
     srv_->setCallback (f);
@@ -106,6 +106,7 @@ namespace vision_detection
         cv::inRange(hsv_image, lower_color_range_360, upper_color_range_360, output_image_360);
         hsv_image_mask = output_image_0 | output_image_360;
       }
+
   }
 
   bool IndependentHsvFilter::filter(const sensor_msgs::ImageConstPtr& image_msg, const sensor_msgs::LaserScanConstPtr& scan_msg, int& target_tree_index)
@@ -197,6 +198,10 @@ namespace vision_detection
     pub_target_image_.publish(cv_bridge::CvImage(image_msg->header,
                                                  image_msg->encoding,
                                                  src_image).toImageMsg());
+
+    pub_mask_image_.publish(cv_bridge::CvImage(image_msg->header,
+                                               "mono8",
+                                               hsv_image_mask).toImageMsg());
 
     /* find the target tree */
     ROS_WARN("independent hsv filter based vision detectoion: find the target tree, angle_diff: %f", min_diff);

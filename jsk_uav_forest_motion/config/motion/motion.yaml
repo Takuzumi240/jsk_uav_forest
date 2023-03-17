@@ -19,9 +19,9 @@ deep_return_dist : -2.0 # negative value
 turn_radius_offset : -1.0 # negative value
 
 #circle motion
-circle_radius : 0.9
+circle_radius : 3.0
 circle_y_vel : 0.3
-circle_motion_height_step : 0.5
+circle_motion_height_step : 1.5
 
 #obstacle avoidance
 cluster_num_min : 10

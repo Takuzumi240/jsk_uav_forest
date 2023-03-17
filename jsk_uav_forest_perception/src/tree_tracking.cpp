@@ -94,9 +94,9 @@ void TreeTracking::visionDetectionCallback(const geometry_msgs::Vector3StampedCo
 {
   ROS_WARN("tree tracking: start tracking");
   /* stop the vision detection */
-  std_msgs::Bool stop_msg;
-  stop_msg.data = false;
-  pub_stop_vision_detection_.publish(stop_msg);
+  // std_msgs::Bool stop_msg;
+  // stop_msg.data = false;
+  // pub_stop_vision_detection_.publish(stop_msg);
 
   tf::Matrix3x3 rotation;
   rotation.setRPY(0, 0, vision_detection_msg->vector.y + uav_yaw_ + urg_yaw_offset_);

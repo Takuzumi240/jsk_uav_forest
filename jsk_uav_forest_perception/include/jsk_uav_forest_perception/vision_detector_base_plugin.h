@@ -91,6 +91,7 @@ namespace vision_detection
 
       /* ros param */
       pnh_.param("image_topic_name", image_topic_name_, std::string("/camera/image_rect"));
+      pnh_.param("mask_image_topic_name", mask_image_topic_name_, std::string("/mask_image"));
       pnh_.param("camera_info_topic_name", camera_info_topic_name_, std::string("camera_info"));
       pnh_.param("laser_scan_topic_name", laser_scan_topic_name_, std::string("/scan"));
       pnh_.param("target_image_topic_name", target_image_topic_name_, std::string("/target"));
@@ -116,6 +117,7 @@ namespace vision_detection
       sub_camera_info_ = nh_.subscribe(camera_info_topic_name_, 1, &DetectorBase::cameraInfoCallback, this);
 
       pub_target_image_ = nh_.advertise<sensor_msgs::Image>(target_image_topic_name_, 1);
+      pub_mask_image_ = nh_.advertise<sensor_msgs::Image>(mask_image_topic_name_, 1);
       pub_target_direction_ = nh_.advertise<geometry_msgs::Vector3Stamped>("/object_direction", 1);
       pub_target_image_center_ = nh_.advertise<geometry_msgs::PointStamped>("/object_image_center", 1);
     }
@@ -129,12 +131,14 @@ namespace vision_detection
 
     ros::Subscriber sub_camera_info_;
     ros::Subscriber sub_detection_start_;
+    ros::Publisher pub_mask_image_;
     ros::Publisher pub_target_image_;
     ros::Publisher pub_target_direction_;
     ros::Publisher pub_target_image_center_;
 
     /* rosparam */
     string image_topic_name_;
+    string mask_image_topic_name_;
     string camera_info_topic_name_;
     string laser_scan_topic_name_;
     string target_image_topic_name_;
@@ -155,7 +159,7 @@ namespace vision_detection
     void cameraScanCallback(const sensor_msgs::ImageConstPtr& image_msg, const sensor_msgs::LaserScanConstPtr& scan_msg)
     {
       /* debug */
-      ROS_WARN("camera scan vs laser scan time diff: %f", (image_msg->header.stamp.toSec() - scan_msg->header.stamp.toSec()));
+      // ROS_WARN("camera scan vs laser scan time diff: %f", (image_msg->header.stamp.toSec() - scan_msg->header.stamp.toSec()));
 
       /* check whether the camera info is updated */
       if(camera_fx_ < -1) return;
@@ -192,7 +196,7 @@ namespace vision_detection
         {
           ROS_INFO("stop perception");
           unsubscribe();
-        }
+       }
 
     }
 

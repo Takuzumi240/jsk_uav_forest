@@ -489,63 +489,6 @@
       </link>
       <allow_auto_disable>1</allow_auto_disable>
     </model>
-    <model name='red_band'>
-      <pose frame=''>0 0 0.8 0 -0 0</pose>
-      <static>1</static>
-      <link name='band'>
-        <pose frame=''>0 0 0 0 -0 0</pose>
-        <inertial>
-          <mass>1</mass>
-          <inertia>
-            <ixx>0.145833</ixx>
-            <ixy>0</ixy>
-            <ixz>0</ixz>
-            <iyy>0.145833</iyy>
-            <iyz>0</iyz>
-            <izz>0.125</izz>
-          </inertia>
-          <pose frame=''>0 0 0 0 -0 0</pose>
-        </inertial>
-        <collision name='collision'>
-          <geometry>
-            <cylinder>
-              <length>0.3</length>
-              <radius>0.11</radius>
-            </cylinder>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <cylinder>
-              <length>0.3</length>
-              <radius>0.11</radius>
-            </cylinder>
-          </geometry>
-          <material>
-            <ambient>1 0 0 1</ambient>
-            <diffuse>1 0.38 0.28 1</diffuse>
-            <specular>0.1 0.1 0.1 1</specular>
-            <emissive>0 0 0 0</emissive>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
     <gravity>0 0 -9.8</gravity>
     <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
     <atmosphere type='adiabatic'/>
@@ -615,16 +558,6 @@
           <velocity>-0.004148 0.0039 -0.003855 -0.021383 -0.022728 1.1e-05</velocity>
           <acceleration>-1.41613 0.666289 -7.33554 2.77596 -1.14208 0.02951</acceleration>
           <wrench>-2.47398 1.16401 -12.8152 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='red_band'>
-        <pose frame=''>0 0 0.8 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='band'>
-          <pose frame=''>0 0 0.8 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='sub_target_tree10'>

@@ -2,7 +2,7 @@
 <launch>
   <arg name="headless" default="false" />
   <arg name="image_name" default="/camera/image" />
-  <arg name="plugin_name" default="ConditionalHsvFilter" />
+  <arg name="plugin_name" default="SeparatedHsvFilter" />
 
   <!-- color region detector -->
   <node pkg="jsk_uav_forest_perception" type="vision_detection_node" name="vision_detection"

@@ -53,7 +53,7 @@ class ForestMotion:
         self.FINISH_STATE_ = 8
         self.state_machine_ = self.INITIAL_STATE_
         self.state_name_ = ["initial", "takeoff", "tree detection start", "approaching to tree", "circle motion", "finish circle motion", "turn", "return home", "finish"]
-        self.circle_motion_count_ = 0
+        self.circle_motion_count_ = 1
         self.target_count_ = 0
 
         self.odom_update_flag_ = False
@@ -107,7 +107,8 @@ class ForestMotion:
         self.turn_radius_offset_ = rospy.get_param("~turn_radius_offset", -1.0)    
         
         #circle motion
-        self.circle_radius_ = rospy.get_param("~circle_radius", 1.0)
+        self.circle_radius_ = rospy.get_param("~circle_radius", 3.0)
+
         self.circle_y_vel_ = rospy.get_param("~circle_y_vel", 0.5)
         
         #obstacle avoidance
@@ -128,7 +129,7 @@ class ForestMotion:
         self.circle_motion_height_step_ = 0
         if self.task_kind_ == 2:
             self.circle_motion_times_ = rospy.get_param("~circle_motion_times", 1)
-            self.circle_motion_height_step_ = rospy.get_param("~circle_motion_height_step_", 0.5)
+            self.circle_motion_height_step_ = rospy.get_param("~circle_motion_height_step", 1.0)
 
         self.target_num_ = 1
         if self.task_kind_ == 3:
@@ -342,6 +343,7 @@ class ForestMotion:
 
         if self.state_machine_ == self.START_CIRCLE_MOTION_STATE_:
             vel_msg = self.goCircle(self.tree_xy_local_pos_, self.takeoff_height_ + self.circle_motion_count_ * self.circle_motion_height_step_, self.circle_y_vel_, self.circle_radius_)
+
         if self.state_machine_ == self.FINISH_CIRCLE_MOTION_STATE_:
             tree_direction = math.atan2(self.tree_xy_local_pos_[1], self.tree_xy_local_pos_[0])
             vel_msg = self.goPos(self.LOCAL_FRAME_, np.array([self.tree_xy_local_pos_[0] - self.circle_radius_,

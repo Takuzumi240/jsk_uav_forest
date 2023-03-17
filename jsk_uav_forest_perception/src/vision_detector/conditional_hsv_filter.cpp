@@ -140,6 +140,9 @@ namespace vision_detection
                                                  image_msg->encoding,
                                                  src_image).toImageMsg());
 
+    pub_mask_image_.publish(cv_bridge::CvImage(image_msg->header,
+                                               "mono8",
+                                               hsv_image_mask).toImageMsg());
 
     /* find the target tree */
     ROS_WARN("conditional hsv filter based vision detectoion: find the target tree.");
